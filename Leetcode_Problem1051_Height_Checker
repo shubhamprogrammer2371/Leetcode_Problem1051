@@ -1,0 +1,16 @@
+int cmpfunc(const void* a , const void* b)
+{
+    return (*(int*)a - *(int*)b);
+}
+int heightChecker(int* heights, int heightsSize){
+    int* temp = (int*)malloc(heightsSize*sizeof(int));
+    for( int i = 0 ; i < heightsSize ; i++)
+        temp[i] = heights[i];
+    qsort(heights,heightsSize,sizeof(int),cmpfunc);
+    int counter = 0;
+    for( int i = 0 ; i < heightsSize ; i++)
+        counter = (temp[i] != heights[i]) ? counter + 1 : counter;
+    free(temp);
+    temp = NULL;    
+    return counter;
+}
